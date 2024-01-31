@@ -8,7 +8,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.time.Duration;
 
 public class WebDriverBuilder {
@@ -16,18 +15,22 @@ public class WebDriverBuilder {
 
     public WebDriverBuilder() {}
 
-//    public WebDriverBuilder createDriver() throws MalformedURLException{
-//        System.setProperty("webdriver.chrome.driver", Paths.get("D:", "Downloads", "chromedriver.exe").toString());
-//        this.webDriver = new ChromeDriver();
-//        return this;
-//    }
+    public WebDriverBuilder createDriver(String type) throws MalformedURLException {
+        switch (type) {
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver_path"));
+                this.webDriver = new ChromeDriver();
 
-    public WebDriverBuilder createDriver() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setPlatform(Platform.LINUX);
-        capabilities.setBrowserName("firefox");
-        capabilities.setVersion("43");
-        this.webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+                break;
+            case "grid":
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setPlatform(Platform.LINUX);
+                capabilities.setBrowserName("firefox");
+                capabilities.setVersion("43");
+                this.webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+                break;
+        }
+
         return this;
     }
 

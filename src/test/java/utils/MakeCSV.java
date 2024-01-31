@@ -1,7 +1,6 @@
 package utils;
 
 import com.opencsv.CSVWriter;
-import io.qameta.allure.Attachment;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MakeCSV {
-    @Attachment
 
     public static void writeDataAtOnce(String filePath, String firstDate, String firstAmount, String firstType,
                                        String secondDate, String secondAmount, String secondType) {

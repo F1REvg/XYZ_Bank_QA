@@ -1,6 +1,6 @@
 package tests;
 
-import common.Urls;
+import common.ConfProperties;
 import common.WebDriverBuilder;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
@@ -12,17 +12,15 @@ import java.net.MalformedURLException;
 
 public abstract class BaseTest {
     WebDriver webDriver;
-    Urls urls;
     LoginPage loginPage;
     TransactionsPage transactionsPage;
 
     public BaseTest() throws MalformedURLException {
         webDriver = new WebDriverBuilder()
-                .createDriver()
+                .createDriver(ConfProperties.getProperty("driver"))
                 .setImplicitlyWait(5)
                 .maximize()
                 .build();
-        urls = new Urls();
         loginPage = new LoginPage(webDriver);
         transactionsPage = new TransactionsPage(webDriver);
     }
