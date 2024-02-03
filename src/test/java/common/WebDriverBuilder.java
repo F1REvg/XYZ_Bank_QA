@@ -3,6 +3,7 @@ package common;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -23,11 +24,8 @@ public class WebDriverBuilder {
 
                 break;
             case "grid":
-                DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setPlatform(Platform.LINUX);
-                capabilities.setBrowserName("firefox");
-                capabilities.setVersion("43");
-                this.webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+                ChromeOptions options = new ChromeOptions();
+                this.webDriver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
                 break;
         }
 

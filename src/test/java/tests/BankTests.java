@@ -16,7 +16,9 @@ public class BankTests extends BaseTest {
     public void simbTest() throws InterruptedException {
         init(ConfProperties.getProperty("xyz_bank_url"));
         loginPage.loginAsHarryPotter();
+        transactionsPage.deposit();
+        transactionsPage.withdrawl();
+        transactionsPage.checkBalance();
         transactionsPage.checkTransactionsOpportunity();
-        transactionsPage.makeCSV(ConfProperties.getProperty("csv_path"));
     }
 }
